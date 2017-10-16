@@ -1,5 +1,15 @@
 <ul>
 <% @posts.each do |post| %>
-  <li><a href="posts/<%= post.id %>"><%= post.title %></a></li>
+  <li><a href="/posts/<%= post.id %>"><%= post.title %></a></li>
+  <% if @current_user && @current_user.id == post.user_id%>
+    <a href="/posts/<%= post.id %>/edit">Edit</a>
+    <%= form_tag("/posts/#{post.id}", method: "delete") do %>
+      <input type = "submit" value = "delete">
+  <% end %>
+<% end %>
+
+  <% if @errors %>
+    <p style="color:red;"><%= @errors %></p>
+  <% end %>
 <% end %>
 </ul>

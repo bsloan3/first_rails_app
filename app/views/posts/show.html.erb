@@ -1,3 +1,13 @@
 <h1><%= @post.title %></h1>
 <h4><%= @post.user.email %></h4>
 <p><%= @post.body %></p>
+  <% if @current_user && @current_user.id == @post.user_id %>
+    <a href="/posts/<%= @post.id %>/edit">Edit</a>
+    <%= form_tag("/posts/#{@post.id}", method: "delete") do %>
+      <input type = "submit" value = "delete">
+    <% end %>
+  <% end %>
+
+<% if @errors %>
+  <p style="color:red;"><%= @errors %></p>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_tag("/posts/#{@post.id}", method: "patch") do %>
+  <label for="post[title]">Title: </label>
+  <input value='<%= @post.title %>' type="text" name="post[title]">
+  <label for="post[body]">Post: </label>
+  <textarea name="post[body]"><%= @post.body %></textarea>
+  <input type="submit" name="Update">
+<% end %>
