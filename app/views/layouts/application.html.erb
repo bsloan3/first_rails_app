@@ -9,6 +9,15 @@
   </head>
 
   <body>
+  <header>
+  <a href="/">Home</a>
+  <% if @current_user %>
+    <p><%= @current_user.email %></p>
+    <a href="/logout">Logout</a>
+  <% else %>
+    <a href="/login">Login</a>
+  <% end %>
+  </header>
     <%= yield %>
   </body>
 </html>
