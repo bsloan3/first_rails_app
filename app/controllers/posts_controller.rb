@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post=current_user.posts.new(params[:post])
+    @post=current_user.posts.new(title: params[:post][:title], body: params[:post][:body])
     if @post.save
       redirect_to '/'
     else

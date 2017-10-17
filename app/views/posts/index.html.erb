@@ -1,15 +1,20 @@
-<ul>
+<ul class="list-group">
 <% @posts.each do |post| %>
-  <li><a href="/posts/<%= post.id %>"><%= post.title %></a></li>
+  <li><a href="/posts/<%= post.id %>" class="list-group-item list-group-item-action"><%= post.title %></a></li>
   <% if @current_user && @current_user.id == post.user_id%>
-    <a href="/posts/<%= post.id %>/edit">Edit</a>
-    <%= form_tag("/posts/#{post.id}", method: "delete") do %>
-      <input type = "submit" value = "delete">
+    <div class="edit-delete" style="display:flex;">
+      <%= form_tag("/posts/#{post.id}/edit", method: "get") do %>
+        <input type = "submit" value = "edit">
+      <% end %>
+
+      <%= form_tag("/posts/#{post.id}", method: "delete") do %>
+        <input type = "submit" value = "delete">
+      <% end %>
+    </div>
   <% end %>
 <% end %>
 
-  <% if @errors %>
-    <p style="color:red;"><%= @errors %></p>
-  <% end %>
+<% if @errors %>
+  <p style="color:red;"><%= @errors %></p>
 <% end %>
 </ul>
